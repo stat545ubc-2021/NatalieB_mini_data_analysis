@@ -3,8 +3,6 @@ title: "Mini Data Analysis"
 author: "Natalie"
 date: "08/10/2021"
 output:
-  md_document:
-    variant: markdown_github
   html_document: default
   pdf_document: default
 ---
@@ -52,6 +50,8 @@ View(CTmax_swim_Fry)
 
 ## 1.2: Explore datasets 
 
+### CTmax_swim_Fry
+
 This dataset has 6 columns and 122 rows; data explores temperature, time, mass, and length characteristics of Chinook fry. Temperature acclimation number is treated as character class. Also contains time as a class.
 
 ```{r  warning=FALSE}
@@ -60,6 +60,7 @@ glimpse(CTmax_swim_Fry)
 ```
 
 
+### steam_games
 This dataset has 21 columns and 40,833 rows; the data explores game ratings, mature content warnings, developers and publishers, as well as genre, languages available, and specs required for the games to run. The majority of the data is character class.
 
 ```{r  warning=FALSE}
@@ -67,13 +68,17 @@ class(steam_games)
 glimpse(steam_games)
 ```
 
-This dataset has 20 columns and 146,611 rows; the data contains information regarding tree location (with street, block, neighbourhood), species, cultivar, root barrier. Most data contained in this dataset is a character class, but also contains the class "date"
+
+### vancouver_trees
+This dataset has 20 columns and 146,611 rows; the data contains information regarding tree location (with street, block, neighbourhood), species, cultivar, root barrier. Most data contained in this dataset is a character class, but also contains the class "date".
 
 ```{r  warning=FALSE}
 class(vancouver_trees)
 glimpse(vancouver_trees)
 ```
 
+
+### parking_meters
 This dataset contains 22 columns and 10,032 rows; the data contains information such as credit card payment (yes/no), pay by phone code, specific coordinates (longitude and latitude), neighbourhood located, and whether it is a single or twin paystation. This dataset conatins all but two rows labeled as character.
 
 ```{r warning=FALSE}
@@ -85,7 +90,7 @@ glimpse(parking_meters)
 
 | Dataset name | Description |
 | :---        |    :----:   |  
-| CTmax_swim_fry| This subset of my overall data collection is interesting because it was a part of the research project that had the most unknowns about it, as this type of experiment is still quite novel. I'm interested in being able to explore more into this dataset to be able to explore results  | 
+| CTmax_swim_Fry| This subset of my overall data collection is interesting because it was a part of the research project that had the most unknowns about it, as this type of experiment is still quite novel. I'm interested in being able to explore more into this dataset to be able to explore results.  | 
 |steam_games   |   I'm interested in this dataset because I spend some time gaming, but I don't do it enough to warrant buying loads of games, so being able to have many different games with reviews, ratings, and descriptions readily available for analysis is apealing to me.    | 
 
 
@@ -93,10 +98,10 @@ glimpse(parking_meters)
 
 |Dataset name    |Research Question |
 | :---        |    :----:   |
-| CTmax_swim_fry| What is the relationship between acclimation temperature and dropout temperature     | 
+| CTmax_swim_Fry| What is the relationship between acclimation temperature and dropout temperature?     | 
 |steam_games   |Is there a relationship between mature content rating and overall game rating?        | 
 
-**Final Choice :** CTmax_swim_fry
+**Final Choice :** CTmax_swim_Fry
 
 
  
@@ -106,7 +111,7 @@ glimpse(parking_meters)
 
 ## Introduction
 
-This is an exploration of the dataset CTmax_swim_fry. This dataset contains critical thermal maximum data for stream-type Chinook salmon (*Oncorhynchus tshawytscha*) fry during swim flume trial experiments. 
+This is an exploration of the dataset CTmax_swim_Fry. This dataset contains critical thermal maximum data for stream-type Chinook salmon (*Oncorhynchus tshawytscha*) fry during swim flume trial experiments. 
 
 ## 2.1: complete 4 of 8 excercies / 2.2: provide a brief explanation of reasoning 
 ## Load required libraries for task
@@ -122,7 +127,7 @@ library(rlang)
 ```
 ## *1. Plot the distribution of a numeric variable*
 I would like to look at body mass distribution; was there a proportion of fish body types that are over-represented in the data? Under-represented?
-```{r warning=FALSE}
+```{r warning=FALSE, echo = FALSE}
 (ggplot(CTmax_swim_Fry, aes(`Mass (g)`))
  +geom_density()
  +ylab("distribution of fish mass (g)"))
@@ -134,10 +139,10 @@ I would like to look at body mass distribution; was there a proportion of fish b
 
 
 ## *4. Explore the relationship between 2 variables*
-I decided to look at the relationship between body mass and dropout time, as I'm curious to see if longer-bodied fish were able for a longer period of time; I chose to visualize this by using a scatter plot, to see if there are specific groupings that emerge.
-```{r warning=FALSE}
+I decided to look at the relationship between fork length and dropout time, as I'm curious to see if longer-bodied fish were able for a longer period of time; I chose to visualize this by using a scatter plot, to see if there are specific groupings that emerge.
+```{r warning=FALSE, echo=FALSE}
 (ggplot(CTmax_swim_Fry, aes(`fork length (mm)`, `dropout time`))+
-   geom_point( aes(colour= `fork length (mm)`) )) 
+   geom_jitter( aes(colour= `fork length (mm)`, width= 0.2)   )) 
 
 
 
@@ -147,7 +152,7 @@ I decided to look at the relationship between body mass and dropout time, as I'm
 
 ## *6. Use a boxplot to look at the frequency of different observations within a single variable*
  I decided to use a boxplot to visualize the distributions of dropout temperatures given the acclimation temperature as this can give me an idea of the mean dropout temperature for each acclimation temperature, as well as the other quartiles.
-```{r warning=FALSE}
+```{r warning=FALSE, echo=FALSE}
 
 (ggplot(CTmax_swim_Fry, aes(`Acclimation temp C`,`Dropout temp` ))
  
@@ -159,10 +164,12 @@ I decided to look at the relationship between body mass and dropout time, as I'm
 
 
 ## *8. Use a density plot to explore any of your variables*
+Now I would like to compare body mass and acclimation temperature. Did the body mass of fish swimming vary greatly across acclimation temperatures? Body mass can be an approximation for muscle mass, and since all these fish are in the same age class, smaller bodied fish may have a disadvantage in swimming.
 
-```{r warning=FALSE}
+```{r warning=FALSE, echo=FALSE}
 
-
+(ggplot(CTmax_swim_Fry, aes(`Mass (g)`, `Acclimation temp C`))+
+  ggridges::geom_density_ridges(aes(fill=`Acclimation temp C`), alpha=0.3))
 
 
 ```
@@ -171,10 +178,10 @@ I decided to look at the relationship between body mass and dropout time, as I'm
 
 # Task 3: Write your research questions
 
-**1. Is there a relationship between acclimation temperature and body mass**
+**1. Is body mass influenced by acclimation temperature**
 
-**2. Is there a relationship between dropout temperature and acclimation temperature**  
+**2. Is there a relationship between fork length and body mass? I.e. can I predict that certain length fish will have a certain mass.**  
 
-**3. Is There a relationship between fork length and dropout time**
+**3. Can I find out if acclimation temperature has a more significant influence on either dropout time or dropout temperature**
 
 **4. Is there a relationship between body mass and dropout temperature**
