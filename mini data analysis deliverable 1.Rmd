@@ -14,7 +14,7 @@ output:
 
 2. [x]Load the packages below
 
-```{r}
+```{r setup, include=FALSE}
 library(datateachr)
 library(tidyverse)
 ```
@@ -25,7 +25,7 @@ library(tidyverse)
 
 
 Other:[x] load personal dataset
-```{r}
+```{r setup, include=FALSE}
 library(readr)
 CTmax_swim_Fry <- read_csv("CTmax_swim_Fry.csv", 
     col_types = cols(`Fish ID` = col_character(), 
@@ -111,7 +111,7 @@ This is an exploration of the dataset CTmax_swim_fry. This dataset contains crit
 ## 2.1: complete 4 of 8 excercies / 2.2: provide a brief explanation of reasoning 
 ## Load required libraries for task
 
-```{r}
+```{r setup, include= FALSE}
 library(ggplot2)
 library(ggridges)
 library(scales)
@@ -142,10 +142,12 @@ library(rlang)
 
 
 *6. Use a boxplot to look at the frequency of different observations within a single variable*
-
+ I decided to use a boxplot to visualize the distributions of dropout temperatures given the acclimation temperature as this can give me an idea of the mean dropout temperature for each acclimation temperature, as well as the other quartiles.
 ```{r}
 
-
+(ggplot(CTmax_swim_Fry, aes(`Acclimation temp C`,`Dropout temp` ))
+ 
+ + geom_boxplot( aes(fill=`Acclimation temp C` )))
 
 
 ```
@@ -165,7 +167,7 @@ library(rlang)
 
 # Task 3: Write your research questions
 
-##1.
-##2.
+##1. Is there a relationship between acclimation temperature and body mass
+##2. I  
 ##3.
 ##4. 
