@@ -14,7 +14,8 @@ output:
 
 2. [x] Load the packages below
 
-```{r setup, include=FALSE}
+```{r}
+
 library(datateachr)
 library(tidyverse)
 ```
@@ -24,8 +25,8 @@ library(tidyverse)
 4. [x] When you go to submit, submit a URL to your repository to canvas. 
 
 
-Other: [x] Load personal dataset
-```{r setup, include=FALSE}
+- [x] Load personal dataset
+```{r}
 library(readr)
 CTmax_swim_Fry <- read_csv("CTmax_swim_Fry.csv", 
     col_types = cols(`Fish ID` = col_character(), 
@@ -33,7 +34,8 @@ CTmax_swim_Fry <- read_csv("CTmax_swim_Fry.csv",
         `Acclimation temp C` = col_character(), 
         `fork length (mm)` = col_double(),
         `Mass (g)`= col_double(),
-        `Dropout temp` = col_double()))
+        `Dropout temp` = col_double()
+        ))
         
     
                 View(CTmax_swim_Fry)
@@ -93,8 +95,8 @@ glimpse(parking_meters)
 
 |Dataset name    |Research Question |
 | :---        |    :----:   |
-| CTmax_swim_fry| What is the relationship between acclimation temperature and dropout temperature | 
-|steam_games   |Is there a relationship between mature content rating and overall game rating?    | 
+| CTmax_swim_fry| What is the relationship between acclimation temperature and dropout temperature     | 
+|steam_games   |Is there a relationship between mature content rating and overall game rating?        | 
 
 **Final Choice :** CTmax_swim_fry
 
@@ -122,11 +124,11 @@ library(rlang)
 ```
 *1. Plot the distribution of a numeric variable*
 I would like to look at body mass distribution; was there a proportion of fish body types that are over-represented in the data? Under-represented?
-
 ```{r}
 (ggplot(CTmax_swim_Fry, aes(`Mass (g)`))
- +geom_density())
- +ylab("distribution of fish mass (g)")
+ +geom_density()
+ +ylab("distribution of fish mass (g)"))
+
 
 
 ```
@@ -135,7 +137,6 @@ I would like to look at body mass distribution; was there a proportion of fish b
 
 *4. Explore the relationship between 2 variables*
 I decided to look at the relationship between body mass and dropout time, as I'm curious to see if longer-bodied fish were able for a longer period of time; I chose to visualize this by using a scatter plot, to see if there are specific groupings that emerge.
-
 ```{r}
 (ggplot(CTmax_swim_Fry, aes(`fork length (mm)`, `dropout time`))+
    geom_point( aes(colour= `fork length (mm)`) )) 
@@ -160,8 +161,6 @@ I decided to look at the relationship between body mass and dropout time, as I'm
 
 
 *8. Use a density plot to explore any of your variables*
-
-
 
 ```{r}
 
