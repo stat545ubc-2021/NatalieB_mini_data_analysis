@@ -3,11 +3,13 @@ title: "Mini Data Analysis"
 author: "Natalie"
 date: "08/10/2021"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
-1. -¨[x] Install the [`datateachr`](https://github.com/UBC-MDS/datateachr) package by typing the following into your **R terminal**
+# Housekeeping tasks before beginning project
+
+1. -[x] Install the [`datateachr`](https://github.com/UBC-MDS/datateachr) package by typing the following into your **R terminal**
 
 
 2. -[x]Load the packages below
@@ -22,9 +24,9 @@ library(tidyverse)
 4. -[x] When you go to submit, submit a URL to your repository to canvas. 
 
 
-# Task 1.1: Choose Your Favourite Dataset:heart_decoration:
+# Task 1.1: Choose Your Favourite Datasets
 
-1: My personal dataset, CTmax_swim_Fry
+1: CTmax_swim_Fry (personal dataset)
 
 2: steam_games
 
@@ -32,26 +34,34 @@ library(tidyverse)
 
 4: parking_meters
 
-## 1.2: Explore datasets:mag_right:
+## 1.2: Explore datasets 
+
+This dataset has 6 columns and 122 rows; data explores temperature, time, mass, and length characteristics of Chinook fry. Temperature acclimation number is treated as character class. Also contains time as a class.
 
 ```{r}
-### EXPLORE HERE ###
-CTmax_swim_Fry
+
 ```
 
-```{r}
-### EXPLORE HERE ###
-steam_games
-```
+
+This dataset has 21 columns and 40,833 rows; the data explores game ratings, mature content warnings, developers and publishers, as well as genre, languages available, and specs required for the games to run. The majority of the data is character class.
 
 ```{r}
-### EXPLORE HERE ###
-vancouver_trees
+class(steam_games)
+glimpse(steam_games)
 ```
 
+This dataset has 20 columns and 146,611 rows; the data contains information regarding tree location (with street, block, neighbourhood), species, cultivar, root barrier. Most data contained in this dataset is a character class, but also contains the class "date"
+
 ```{r}
-### EXPLORE HERE ###
-parking_meters
+class(vancouver_trees)
+glimpse(vancouver_trees)
+```
+
+This dataset contains 22 columns and 10,032 rows; the data contains information such as credit card payment (yes/no), pay by phone code, specific coordinates (longitude and latitude), neighbourhood located, and whether it is a single or twin paystation. This dataset conatins all but two rows labeled as character.
+
+```{r}
+class(parking_meters)
+glimpse(parking_meters)
 ```
 ## 1.3: Narrow it down to 2
 
@@ -70,6 +80,9 @@ parking_meters
 |steam_games   |Is there a relationship between mature content rating and overall game rating?        | 
 
 **Final Choice :** CTmax_swim_fry
+
+
+ 
  
  
 # Task 2: Exploring your dataset
@@ -79,11 +92,63 @@ parking_meters
 This is an exploration of the dataset CTmax_swim_fry. This dataset contains critical thermal maximum data for stream-type Chinook salmon (*Oncorhynchus tshawytscha*) fry during swim flume trial experiments. 
 
 ## 2.1: complete 4 of 8 excercies / 2.2: provide a brief explanation of reasoning 
+## Load required libraries for task
 
+```{r}
+library(ggplot2)
+library(ggridges)
+library(scales)
+library(tsibble)
+library(tidyverse)
+library(rlang)
+
+```
 *1. Plot the distribution of a numeric variable*
 
+```{r}
+
+
+
+
+```
+
+
+
 *4. Explore the relationship between 2 variables*
+```{r}
+
+
+
+
+```
+
+
 
 *6. Use a boxplot to look at the frequency of different observations within a single variable*
 
+```{r}
+
+
+
+
+```
+
+
+
 *8. Use a density plot to explore any of your variables*
+
+```{r}
+
+
+
+
+```
+
+
+
+# Task 3: Write your research questions
+
+##1.
+##2.
+##3.
+##4. 
