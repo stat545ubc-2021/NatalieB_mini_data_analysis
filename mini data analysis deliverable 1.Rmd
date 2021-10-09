@@ -9,19 +9,35 @@ output:
 
 # Housekeeping tasks before beginning project
 
-1. -[x] Install the [`datateachr`](https://github.com/UBC-MDS/datateachr) package by typing the following into your **R terminal**
+1. [x] Install the [`datateachr`](https://github.com/UBC-MDS/datateachr) package by typing the following into your **R terminal**
 
 
-2. -[x]Load the packages below
+2. [x]Load the packages below
 
 ```{r}
 library(datateachr)
 library(tidyverse)
 ```
 
-3. -[x] Make a repository in the https://github.com/stat545ubc-2021 Organization. You will be working with this repository for the entire data analysis project. You can either make it public, or make it private and add the TA's and Vincenzo as collaborators. 
+3. [x] Make a repository in the https://github.com/stat545ubc-2021 Organization. You will be working with this repository for the entire data analysis project. You can either make it public, or make it private and add the TA's and Vincenzo as collaborators. 
 
-4. -[x] When you go to submit, submit a URL to your repository to canvas. 
+4. [x] When you go to submit, submit a URL to your repository to canvas. 
+
+
+Other:[x] load personal dataset
+```{r}
+library(readr)
+CTmax_swim_Fry <- read_csv("CTmax_swim_Fry.csv", 
+    col_types = cols(`Fish ID` = col_character(), 
+        `dropout time` = col_time(format = "%H:%M:%S"), 
+        `Acclimation temp C` = col_character(), 
+        `fork length (mm)` = col_double(),
+        `Mass (g)`= col_double(),
+        `Dropout temp` = col_double()))
+        
+    
+                View(CTmax_swim_Fry)
+```
 
 
 # Task 1.1: Choose Your Favourite Datasets
@@ -39,7 +55,8 @@ library(tidyverse)
 This dataset has 6 columns and 122 rows; data explores temperature, time, mass, and length characteristics of Chinook fry. Temperature acclimation number is treated as character class. Also contains time as a class.
 
 ```{r}
-
+class(CTmax_swim_Fry)
+glimpse(CTmax_swim_Fry)
 ```
 
 
