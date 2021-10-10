@@ -3,8 +3,8 @@ title: "Mini Data Analysis"
 author: "Natalie"
 date: "08/10/2021"
 output:
-  html_document: default
-  pdf_document: default
+    html_document: default
+    pdf_document: default
 ---
 
 # Housekeeping tasks before beginning project
@@ -40,7 +40,7 @@ View(CTmax_swim_Fry)
 
 # Task 1.1: Choose Your Favourite Datasets
 
-1: CTmax_swim_Fry (personal dataset)
+1: CTmax_swim_Fry (personal dataset: contains the swim flume trial data of critical thermal maximum experiments on Chinook fry. Each fish has a unique ID and is assigned one of four acclimation treatments before the trial. Data collected during the experiment is time of dropout of the swim trial, the temperature of the water at dropout, and the fork length of the fish (mm) and mass (g))
 
 2: steam_games
 
@@ -51,7 +51,6 @@ View(CTmax_swim_Fry)
 ## 1.2: Explore datasets 
 
 ### CTmax_swim_Fry
-
 This dataset has 6 columns and 122 rows; data explores temperature, time, mass, and length characteristics of Chinook fry. Temperature acclimation number is treated as character class. Also contains time as a class.
 
 ```{r  warning=FALSE}
@@ -178,10 +177,10 @@ Now I would like to compare body mass and acclimation temperature. Did the body 
 
 # Task 3: Write your research questions
 
-**1. Is body mass influenced by acclimation temperature**
+**1. Is body mass influenced by acclimation temperature?**
 
 **2. Is there a relationship between fork length and body mass? I.e. can I predict that certain length fish will have a certain mass.**  
 
-**3. Can I find out if acclimation temperature has a more significant influence on either dropout time or dropout temperature**
+**3. Can I find out if acclimation temperature has a more significant influence on either dropout time or dropout temperature?**
 
-**4. Is there a relationship between body mass and dropout temperature**
+**4. Is there a relationship between body mass and dropout temperature?**
