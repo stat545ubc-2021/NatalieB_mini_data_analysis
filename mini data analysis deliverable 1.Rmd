@@ -2,9 +2,7 @@
 title: "Mini Data Analysis"
 author: "Natalie"
 date: "08/10/2021"
-output:
-    html_document: default
-    pdf_document: default
+output: github_document
 ---
 
 # Housekeeping tasks before beginning project
