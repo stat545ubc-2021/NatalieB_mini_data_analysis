@@ -37,5 +37,5 @@ A comma-separated file format containing the dataset used for the analysis proje
 
 ### *mini-data-analysis-deliverable-1_files:*
 
-This file contains the .png renderigns of the graphs made in part 2. 
+This file contains the .png renderings of the graphs made in part 2. 
 
