@@ -25,7 +25,7 @@ Here you will find an exploration of different datasets and my research question
 All code can be run in R with the appropriate packages installed(Packages needed included in code)
 
 
-*mini data analysis deliverable-1.md:*
+*mini-data-analysis-deliverable-1.md:*
 
 The file rendered from knitting "mini data analysis deliverable 1.Rmd"
 
@@ -33,4 +33,9 @@ The file rendered from knitting "mini data analysis deliverable 1.Rmd"
 *CTmax_swim_Fry.csv:*
 
 A comma-separated file format containing the dataset used for the analysis project
+
+
+*mini-data-analysis-deliverable-1_files*
+
+This file contains the .png renderigns of the graphs made in part 2. 
 
