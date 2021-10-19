@@ -5,7 +5,7 @@ date: "16/10/2021"
 output: html_document
  
 ---
-**Housekeeping:load the following packages and dataset**
+**Housekeeping: load the following packages and dataset**
 ```{r message=FALSE, warning=FALSE}
 library(ggplot2)
 library(ggridges)
@@ -31,13 +31,13 @@ View(CTmax_swim_Fry)
 
 ## 1.1: Reseach Questions
 
-**1. Is body mass influenced by acclimation temperature?**
+1. Is body mass influenced by acclimation temperature?
 
-**2. Is there a relationship between fork length and body mass? I.e. can I predict that certain length fish will have a certain mass.**  
+2. Is there a relationship between fork length and body mass? I.e. can I predict that certain length fish will have a certain mass. 
 
-**3. Can I find out if acclimation temperature has a more significant influence on either dropout time or dropout temperature?**
+3. Can I find out if acclimation temperature has a more significant influence on either dropout time or dropout temperature?
 
-**4. Is there a relationship between body mass and dropout temperature?**
+4. Is there a relationship between body mass and dropout temperature?
 
 
 ## 1.2: Summarizing and Graphing
@@ -45,17 +45,18 @@ View(CTmax_swim_Fry)
 ### Question 1: Is body mass influenced by acclimation temperature?
 
 *Summary* 
-1. Computing range, mean, median, and mode for body mass across acclimation temperatures will help better summarize the body mass data, as opposed to looking at the data unmanipulated.This summary helps me answer my question as I'm able to see the differences between body mass and their deviation.
+
+1. Computing range, mean, median, and mode for body mass across acclimation temperatures will help better summarize the body mass data, as opposed to looking at the data unmanipulated.This summary helps me answer my question as I'm able to see the differences between body mass and their deviation/spread of values within each acclimation treatment.
 
 
-```{r}
+```{r warning=FALSE}
 
 #Here the mean is computed to look at what the most average fry mass could be expected to be.
 CTmax_swim_Fry %>%
   group_by( `Acclimation temp C`) %>%
   summarise(body_mass_mean = mean(`Mass (g)`, na.rm = TRUE))
 
-#Here the rage shows the highest and lowest values for each acclimation treatment.
+#Here the range shows the highest and lowest values for each acclimation treatment.
 CTmax_swim_Fry %>%
   group_by( `Acclimation temp C`) %>%
   summarise(body_mass_range = range(`Mass (g)`, na.rm = TRUE))
@@ -75,33 +76,43 @@ CTmax_swim_Fry %>%
 ```
 
 *Graph* 
+
 5. Creating a graph with more than one geom layer can help discern both bigger picture visuals along with some detail all in the same graphic. While the boxplot allows someone to focus on the general distribution of the mass data with each given acclimation treatment, the use of geom layer jitter allows the viewer to see the exact distribution of the mass data without risk of overlapping data points. 
 
 This graphic shows general similarity in mass between the 15C, 18C, and 20C acclimation temperatures, and a distinctly smaller mass with the 24C acclimation temperature, hinting that this higher acclimation temperature may be adversely affecting growth in this age class.
 
-```{r}
+```{r warning=FALSE}
 ggplot(CTmax_swim_Fry, aes(`Acclimation temp C`, `Mass (g)`))+
   geom_boxplot()+
-  geom_jitter(aes(color = `Acclimation temp C`),
+  geom_jitter(aes(),
             size = 1.5,
-            alpha = 0.8)
+            alpha = 0.3)
 
 ```
 
 ### Question 2: Is there a relationship between fork length and body mass?
 
 *Summary*
-The goal here is to see if longer fish can also be predicted to also have a higher mass. 
 
-```{r}
+3. Creating a categorical variable out of the fork length can help compare the categorical variable made with body mass (further down). If both have variables with the same constraints (based off the median and range), a count can be performed comparing how many fish scored "Low", "Average", or "High" for both fork length and mass.
+
+```{r warning=FALSE}
+(Fry_dropout_length <- CTmax_swim_Fry %>% 
+    select(-`dropout time`,-`Mass (g)`, -`Acclimation temp C`,-`Dropout temp`)%>%
+    mutate(dropout_length_category = case_when(`fork length (mm)` < 32 ~ "Low",
+                                 `fork length (mm)` < 44 ~ "Average",
+                                 `fork length (mm)` < 55 ~ "High")))
+
 
 
 ```
 
 *Graph*
-The goal here is to compare 
-```{r}
 
+7. The goal of plotting mass and fork length is to visualize the measurements of the fish. Here we can see that fish with a larger mass do tend to be longer, though there are some outliers, which could indicate fish that are either better or worse at competing for food than their cohort. Adjusting the alpha is especially important in this case because we are reliant on the points for data interpretation; as opposed to the boxplots with the overlaid points.There is considerable overlap in the middle of the graph, where average measurements are. Using point instead of jitter is relevant to the data as x-values are numeric and represent the fork length, and it's important to show that some fish had the same fork length but different mass.
+```{r warning=FALSE}
+ggplot(CTmax_swim_Fry, aes(`fork length (mm)`,`Mass (g)` ))+
+  geom_point(colour= "red", alpha=0.2, size=2)
 
 ```
 
@@ -111,13 +122,18 @@ The goal here is to compare
 
 *Summary*
 
-```{r}
+3. Making a ridge plot of acclimation temperatures
+```{r warning=FALSE}
+
+
 
 ```
 
 *Graph*
+
 the plan: use density curves and overlay dropout time versus dropout temperature and see if there is a significant curve
-```{r}
+```{r warning=FALSE}
+
 
 
 ```
@@ -125,8 +141,9 @@ the plan: use density curves and overlay dropout time versus dropout temperature
 ### Question 4: Is there a relationship between body mass and dropout temperature?
 
 *Summary*
+
 3. Create a categorical variable sorting dropout mass into low, medium, and high. The new categorical variables are informed by the previous summaries of the data done in question 1. All unrelated categories (length, acclimation temperature, etc.) are removed for ease of reading. With this, I can either do a manual comparison of all the dropout times or I am now set up to make a box plot to visualize the dropout temperatures as a function of body mass.
-```{r}
+```{r warning=FALSE}
 (Fry_dropout_mass <- CTmax_swim_Fry %>% 
     select(-`dropout time`,-`fork length (mm)`, -`Acclimation temp C`)%>%
     mutate(dropout_mass_category = case_when(`Mass (g)` < 0.45 ~ "Low",
@@ -135,8 +152,9 @@ the plan: use density curves and overlay dropout time versus dropout temperature
                                 
 ```
 *Graph*
+
 5. Create a graph out of summarized variables that has at least two geom layers. By using a box plot with jitter overlaid, we can see a simplified visual of the data as well as the individual data points. This boxplot shows us that there is considerable overlap with dropout temperatures regardless of mass, leaving us to infer that mass may not have a role in predicting dropout temperature. Alpha transparency here is also adjusted due to crowding of the datapoints.
-```{r}
+```{r warning=FALSE}
 ggplot(Fry_dropout_mass) + geom_boxplot(aes(x = dropout_mass_category, y = `Dropout temp`)) +
   geom_jitter(aes(x = dropout_mass_category, y = `Dropout temp`), alpha=0.5)+
   labs(y = "Dropout temperature (C)", x = "Mass classes (g)") +
@@ -146,12 +164,39 @@ ggplot(Fry_dropout_mass) + geom_boxplot(aes(x = dropout_mass_category, y = `Drop
 
 ## 1.3: Reflection of research questions
 
+
+### Question 1: Is body mass influenced by acclimation temperature?
+
+I feel like I've made some headway in terms of addressing if body mass is influenced by acclimation temperature. So far, I'm interested in this information because it can give me an idea of how the environment these fish are in can affect their metabolism and resource partitioning. The 15C, 18C, and 20C fish have very similar mass classes, but the 24C fish have a noticeably smaller mass. This tells me that most of the nutrients are being used up for coping with the warm water, while the three other groups of fish are able to divert extra nutrition towards growth.
+
+I'm not sure if there's more refining to do, but I would like to do some sort of extra analysis or model-fitting to see if there is significance in the preliminary work.
+
+
+### Question 2: Is there a relationship between fork length and body mass? 
+
+I'm having more difficulty with this one, despite it's simplicity. While I'm able to find clearer answers through graphing, I ran into trouble trying to do summaries with it. I think that the creation of categorical data with both numerical values and comparing how many fish have which combination of categories can help with some very basic inference. However, plotting the measurements made it much simpler to see that while there is variability between mass and fork length, fish with a longer fork length tended to have a higher mass. In terms of refinement, I'd like to look at predictability of body mass and fork length given one of these variables. Is the relationship between fork length and body mass linear among fry?
+
+
+### Question 3: Can I find out if acclimation temperature has a more significant influence on either dropout time or dropout temperature?
+
+This is the question I'm having the most trouble with, mainly because I'm dealing with three different variables, and one of them is of a different class (time instead of numerical). Additionally, I think it would be better if I focused on dropout temperature instead of time. Due to the nature of the experiment, where temperature is increased over a fixed time interval until the last fish drops out, it can quickly be inferred that the fish who reach the highest temperatures also achieve the longest swim times. With this, I'd like to adjust the research question to focus on the relationship between acclimation treatment and dropout temperature.*Which acclimation temperature yielded fish with the highest thermal tolerance?*
+
+
+### Question 4: Is there a relationship between body mass and dropout temperature?
+
+The initial findings surprised me because I hypothesized that smaller fish would drop out at lower temperatures. This is because they have less muscle and stored energy, so I thought that they would not be able to swim as long or be as tolerant to the temperature increases. While I don't think there's extra refinement that can happen to this specific question, the followup would be to see if fork length can play a role in dropout temperature. I'm curious about this since a longer fish requires fewer tail beats to swim a set distance, and since the swim flume was set to a specific speed, the longer fish did not have to put in as much work as the smaller fish.
+
+
 # Task 2: Tidy data
 
+
 ## 2.1: Identifying tidy data
+
 I do believe that my data in its base form is tidy.Each column represents one variable of the experiemnt (Fish ID, Dropout temperature, Dropout time, Mass, Fork Length, and Acclimation temperature). Each row is an observation of data corresponding to one individual fish. As a fish dropped out of the trial, time and temperature of dropout was recorded, and then it was measured for mass and fork length.Acclimation temperature was known beforehand as trials are run with groups of fish all belonging to the same acclimation treatment. Finally, each cell contains one value; either the fish's ID, measurement, performance in the swimming trial, or acclimation treatment.
 
+
 ## 2.2: Tidying and untidying data
+
 I'm going to firstly untidy the data. In order to do that, I'm going to pivot wider the Acclimation Temperature column and sort fish mass under that. This means that each new column representing acclimation temperature will have the value of mass, and mass will no longer be contained within its own column, rendering it untidy.This also becomes untidy as there are large gaps in the table with no values. Because fish only belonged to one acclimation group, the subsequent acclimation columns that don't include the individual fish are left blank.
 ```{r}
 (untidy_mass <- CTmax_swim_Fry %>%
@@ -160,7 +205,9 @@ I'm going to firstly untidy the data. In order to do that, I'm going to pivot wi
                 values_from = `Mass (g)`))
 
 ```
+
 Now, to tidy the data back up again, I'm going to pivot longer and create two columns; one to encompass the acclimation temperature, and another for the mass.
+
 ```{r}
 (tidy_mass<- untidy_mass%>%
    pivot_longer(cols=c(-`Fish ID`,-`dropout time`,-`fork length (mm)`, -`Dropout temp`),
@@ -168,7 +215,17 @@ Now, to tidy the data back up again, I'm going to pivot longer and create two co
                 values_to = "Mass (g)"))
 
 ```
+
+
 ## 2.3: Research questions to take into Milestone 3 
+
 I've decided to continue with  
 Is body mass influenced by acclimation temperature? 
-Can I find out if acclimation temperature has a more significant influence on either dropout time or dropout temperature?
+```{r}
+
+```
+which acclimation temperature yielded fish with the highest thermal tolerance?
+```{r}
+
+```
+
