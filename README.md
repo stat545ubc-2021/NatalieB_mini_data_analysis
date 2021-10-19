@@ -1,6 +1,7 @@
 # **Mini Data Analysis** 
 
 Welcome to my mini data analysis!
+This Mini Data Analysis project is part of the UBC STAT545A course. In three installations, the objective of this project is to explore data analysis, visualization, the concept of tidy data, and choosing research questions that are relevant to the selected dataset. The dataset chosen is a subsample of a larger set of my own research looking into the role of acclimation temperature on thermal tolerance. It contains critical thermal maximum trial data for Chinook fry; a unique fish id, the acclimation treatment temperature, dropout time and temperature, as well as mass (g) and fork length (mm).
 
 ## Deliverable 1 :fish:
 
