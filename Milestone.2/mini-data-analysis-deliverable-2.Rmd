@@ -122,9 +122,27 @@ ggplot(CTmax_swim_Fry, aes(`fork length (mm)`,`Mass (g)` ))+
 
 *Summary*
 
-
+1. I decided to compute range, mean, median, and standard deviation of dropout temperature across acclimation treatments. This would be a first step into looking at variance in the group. After this I would do the same for dropout time; the goal here would be to do some basic exploratory summaries and then perfrom an ANOVA, to see if there is a difference in significance of variance between acclimation groups. For example, if there is significance in the variance between acclimation treatments in terms of temperature but not time, we can infer that acclimation temperature influences temperature more than time.
 ```{r warning=FALSE}
+#Here the mean is computed to look at what temperature the most fry dropped out at
+CTmax_swim_Fry %>%
+  group_by( `Acclimation temp C`) %>%
+  summarise(dropout_temp_mean = mean(`Dropout temp`, na.rm = TRUE))
 
+#Here the range shows the highest and lowest dropout temperatures for each acclimation treatment.
+CTmax_swim_Fry %>%
+  group_by( `Acclimation temp C`) %>%
+  summarise(dropout_temp_range = range(`Dropout temp`, na.rm = TRUE))
+
+#The median is a little more descriptive than the mean, as the mean will be affected by outliers in the calculation. However, the median is more robust to the outliers in the data that can be present.
+CTmax_swim_Fry %>%
+  group_by( `Acclimation temp C`) %>%
+  summarise(dropout_temp_median = median(`Dropout temp`, na.rm = TRUE))
+
+#The standard deviation is measured for each acclimation treatment to see how much variance there is in droput temperatures .
+CTmax_swim_Fry %>%
+  group_by( `Acclimation temp C`) %>%
+  summarise(dropout_temp_sd = sd(`Dropout temp`, na.rm = TRUE))
 
 
 ```
@@ -228,10 +246,19 @@ Now, to tidy the data back up again, I'm going to pivot longer and create two co
 I've decided to continue with the questions *Is body mass influenced by acclimation temperature?*and *Which acclimation temperature yielded fish with the highest thermal tolerance?*
 
 ```{r}
+#1. In order to further tidy my data, I'm first going to remove the columns that don't have any relevant variables
+#2. After this, I know that Fish ID number 323 doesn't have any associated variables, so I can remove that.
+#3
+#4
+(CTmax_swim_Fry_tidy<- CTmax_swim_Fry %>%
+   select(`Fish ID`, `Acclimation temp C`, `Mass (g)`, `Dropout temp` ))
+ 
+ 
+
+
+
+
 
 ```
 
-```{r}
-
-```
 
