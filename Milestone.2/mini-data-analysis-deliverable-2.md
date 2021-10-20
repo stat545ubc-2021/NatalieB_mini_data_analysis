@@ -522,7 +522,9 @@ another for the mass.
 
 I’ve decided to continue with the questions *Is body mass influenced by
 acclimation temperature?*and *Which acclimation temperature yielded fish
-with the highest thermal tolerance?*
+with the highest thermal tolerance?* The dataset that I’ll be using is
+CTmax\_swim\_Fry\_tidy, where I’ve removed the unnecessary columns of
+data and empty cells.
 
 ``` r
 #1. In order to further tidy my data, I'm first going to remove the columns that don't have any relevant variables.
