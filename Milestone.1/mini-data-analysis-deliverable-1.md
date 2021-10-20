@@ -28,7 +28,7 @@ library(tidyverse)
 
 ``` r
 library(readr)
-CTmax_swim_Fry <- read_csv("CTmax_swim_Fry.csv", 
+CTmax_swim_Fry <- read_csv("../CTmax_swim_Fry.csv", 
     col_types = cols(`Fish ID` = col_character(),
         `dropout time` = col_time(format = "%H:%M:%S"), 
         `Acclimation temp C` = col_character(), 
@@ -247,6 +247,13 @@ library(rlang)
 I would like to look at body mass distribution; was there a proportion
 of fish body types that are over-represented in the data?
 Under-represented?
+
+``` r
+(ggplot(CTmax_swim_Fry, aes(`Mass (g)`))
+ +geom_density()
+ +ylab("distribution of fish mass (g)"))
+```
+
 ![](mini-data-analysis-deliverable-1_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ## *4. Explore the relationship between 2 variables*
@@ -255,6 +262,12 @@ I decided to look at the relationship between fork length and dropout
 time, as I’m curious to see if longer-bodied fish were able for a longer
 period of time; I chose to visualize this by using a scatter plot, to
 see if there are specific groupings that emerge.
+
+``` r
+(ggplot(CTmax_swim_Fry, aes(`fork length (mm)`, `dropout time`))+
+   geom_jitter( aes(colour= `fork length (mm)`, width= 0.2)   )) 
+```
+
 ![](mini-data-analysis-deliverable-1_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 ## *6. Use a boxplot to look at the frequency of different observations within a single variable*
@@ -263,6 +276,13 @@ I decided to use a boxplot to visualize the distributions of dropout
 temperatures given the acclimation temperature as this can give me an
 idea of the mean dropout temperature for each acclimation temperature,
 as well as the other quartiles.
+
+``` r
+(ggplot(CTmax_swim_Fry, aes(`Acclimation temp C`,`Dropout temp` ))
+ 
+ + geom_boxplot( aes(fill=`Acclimation temp C` )))
+```
+
 ![](mini-data-analysis-deliverable-1_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 ## *8. Use a density plot to explore any of your variables*
@@ -272,6 +292,11 @@ the body mass of fish swimming vary greatly across acclimation
 temperatures? Body mass can be an approximation for muscle mass, and
 since all these fish are in the same age class, smaller bodied fish may
 have a disadvantage in swimming.
+
+``` r
+(ggplot(CTmax_swim_Fry, aes(`Mass (g)`, `Acclimation temp C`))+
+  ggridges::geom_density_ridges(aes(fill=`Acclimation temp C`), alpha=0.3))
+```
 
     ## Picking joint bandwidth of 0.0825
 

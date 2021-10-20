@@ -2,7 +2,7 @@
 title: "mini data analysis deliverable 2"
 author: "Natalie"
 date: "16/10/2021"
-output: html_document
+output: github_document
  
 ---
 **Housekeeping: load the following packages and dataset**
