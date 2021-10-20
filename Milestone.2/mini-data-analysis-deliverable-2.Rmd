@@ -246,14 +246,16 @@ Now, to tidy the data back up again, I'm going to pivot longer and create two co
 I've decided to continue with the questions *Is body mass influenced by acclimation temperature?*and *Which acclimation temperature yielded fish with the highest thermal tolerance?*
 
 ```{r}
-#1. In order to further tidy my data, I'm first going to remove the columns that don't have any relevant variables
-#2. After this, I know that Fish ID number 323 doesn't have any associated variables, so I can remove that.
-#3
-#4
+#1. In order to further tidy my data, I'm first going to remove the columns that don't have any relevant variables.
+#2. Depending on which question I'm working on, it may be more suitable to arrange my data by dropout temperature then by mass
+#3. 
+#4.
 (CTmax_swim_Fry_tidy<- CTmax_swim_Fry %>%
-   select(`Fish ID`, `Acclimation temp C`, `Mass (g)`, `Dropout temp` ))
+   select( `Acclimation temp C`, `Mass (g)`, `Dropout temp` )%>%
+   arrange(CTmax_swim_Fry, `Dropout temp`))
  
- 
+#Unfortunately ran out of time to perform more functions on my data
+
 
 
 

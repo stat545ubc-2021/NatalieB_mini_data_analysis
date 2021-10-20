@@ -525,25 +525,30 @@ acclimation temperature?*and *Which acclimation temperature yielded fish
 with the highest thermal tolerance?*
 
 ``` r
-#1. In order to further tidy my data, I'm first going to remove the columns that don't have any relevant variables
-#2. After this, I know that Fish ID number 323 doesn't have any associated variables, so I can remove that.
-#3
-#4
+#1. In order to further tidy my data, I'm first going to remove the columns that don't have any relevant variables.
+#2. Depending on which question I'm working on, it may be more suitable to arrange my data by dropout temperature then by mass
+#3. 
+#4.
 (CTmax_swim_Fry_tidy<- CTmax_swim_Fry %>%
-   select(`Fish ID`, `Acclimation temp C`, `Mass (g)`, `Dropout temp` ))
+   select( `Acclimation temp C`, `Mass (g)`, `Dropout temp` )%>%
+   arrange(CTmax_swim_Fry, `Dropout temp`))
 ```
 
-    ## # A tibble: 121 x 4
-    ##    `Fish ID` `Acclimation temp C` `Mass (g)` `Dropout temp`
-    ##    <chr>     <chr>                     <dbl>          <dbl>
-    ##  1 1         15                         1.04           27.2
-    ##  2 2         15                         0.93           27.9
-    ##  3 3         15                         0.57           28  
-    ##  4 4         15                         0.51           28  
-    ##  5 5         15                         0.68           28  
-    ##  6 6         15                         0.65           28  
-    ##  7 7         15                         0.5            28  
-    ##  8 8         15                         0.76           28  
-    ##  9 9         15                         0.62           28  
-    ## 10 10        15                         0.67           28  
+    ## # A tibble: 121 x 3
+    ##    `Acclimation temp C` `Mass (g)` `Dropout temp`
+    ##    <chr>                     <dbl>          <dbl>
+    ##  1 15                         1.04           27.2
+    ##  2 15                         0.67           28  
+    ##  3 18                         0.51           27.5
+    ##  4 18                         0.81           28.3
+    ##  5 18                         0.63           28.3
+    ##  6 18                         1.15           28.4
+    ##  7 18                         0.97           28.5
+    ##  8 18                         0.58           28.5
+    ##  9 18                         0.64           28.5
+    ## 10 18                         0.82           28.5
     ## # ... with 111 more rows
+
+``` r
+#Unfortunately ran out of time to perform more functions on my data
+```
