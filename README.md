@@ -3,7 +3,7 @@
 Welcome to my mini data analysis!
 This Mini Data Analysis project is part of the UBC STAT545A course. In three installations, the objective of this project is to explore data analysis, visualization, the concept of tidy data, and choosing research questions that are relevant to the selected dataset. The dataset chosen is a subsample of a larger set of my own research looking into the role of acclimation temperature on thermal tolerance. It contains critical thermal maximum trial data for Chinook fry; a unique fish id, the acclimation treatment temperature, dropout time and temperature, as well as mass (g) and fork length (mm).
 
-## Deliverable 1 :fish:
+## General repository 🌊
 
 ### *README.md:*
 
@@ -19,6 +19,11 @@ This specifies untracked files to be deliberately ignored by Git.
 
 contains the project options and can be used as a shortcut for opening the project directly from the file system.
 
+### *CTmax_swim_Fry.csv:*
+
+A comma-separated file format containing the dataset used for the analysis project.
+
+## Deliverable 1, file Milestone.1 :fish:
 
 ### *mini data analysis deliverable 1.Rmd:*
 
@@ -31,14 +36,11 @@ All code can be run in R with the appropriate packages installed(Packages needed
 The file rendered from knitting "mini data analysis deliverable 1.Rmd".
 
 
-### *CTmax_swim_Fry.csv:*
-
-A comma-separated file format containing the dataset used for the analysis project.
-
-
 ### *mini-data-analysis-deliverable-1_files:*
 
 This file contains the .png renderings of the graphs made in part 2. 
+
+## Deliverable 2 🐠
 
 ### *mini data analysis deliverable 2.Rmd:*
 
