@@ -243,7 +243,7 @@ Now, to tidy the data back up again, I'm going to pivot longer and create two co
 
 ## 2.3: Research questions to take into Milestone 3 
 
-I've decided to continue with the questions *Is body mass influenced by acclimation temperature?*and *Which acclimation temperature yielded fish with the highest thermal tolerance?*
+I've decided to continue with the questions *Is body mass influenced by acclimation temperature?* and *Which acclimation temperature yielded fish with the highest thermal tolerance?*
 The dataset that I'll be using is CTmax_swim_Fry_tidy, where I've removed the unnecessary columns of data and empty cells.
 ```{r}
 #1. In order to further tidy my data, I'm first going to remove the columns that don't have any relevant variables.
