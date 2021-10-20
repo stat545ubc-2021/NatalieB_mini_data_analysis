@@ -122,7 +122,7 @@ ggplot(CTmax_swim_Fry, aes(`fork length (mm)`,`Mass (g)` ))+
 
 *Summary*
 
-3. Making a ridge plot of acclimation temperatures
+
 ```{r warning=FALSE}
 
 
@@ -131,9 +131,15 @@ ggplot(CTmax_swim_Fry, aes(`fork length (mm)`,`Mass (g)` ))+
 
 *Graph*
 
-the plan: use density curves and overlay dropout time versus dropout temperature and see if there is a significant curve
+7. Here I've decided to use ridge plots for both dropout temperature and dropout time. Because there is significant overlap between some of the ridges, adjusting alpha transparency is important to be able to see all of the data. I decided to do two ridge plots instead of boxplots as one of my variables is time, which is better represented through a ridge plot. Here we can see that the 24C acclimated fish were dropping out at a quicker time, but at a comparable temperature range, while the other three acclimation groups had a somewhat similar performance when comparing swim time and final temperature. This may be because as per CTmax protocols, the temperature of the flume or bath is equal to that of the acclimation temperature, so the 24C acclimated fish started swimming in 24C water. On the other hand, the 15C, 18C, and 20C acclimated fish started at lower temperatures and had longer swim times to reach the dropout temperatures recorded.
 ```{r warning=FALSE}
+#This is a ridge plot looking at dropout time in relation to acclimation treatment
+(ggplot(CTmax_swim_Fry, aes(`dropout time`, `Acclimation temp C`))+
+  ggridges::geom_density_ridges(aes(fill=`Acclimation temp C`), alpha=0.5))
 
+#This is a ridge plot looking at dropout temperature in relation to acclimation treatment
+(ggplot(CTmax_swim_Fry, aes(`Dropout temp`, `Acclimation temp C`))+
+  ggridges::geom_density_ridges(aes(fill=`Acclimation temp C`), alpha=0.5))
 
 
 ```
@@ -179,7 +185,7 @@ I'm having more difficulty with this one, despite it's simplicity. While I'm abl
 
 ### Question 3: Can I find out if acclimation temperature has a more significant influence on either dropout time or dropout temperature?
 
-This is the question I'm having the most trouble with, mainly because I'm dealing with three different variables, and one of them is of a different class (time instead of numerical). Additionally, I think it would be better if I focused on dropout temperature instead of time. Due to the nature of the experiment, where temperature is increased over a fixed time interval until the last fish drops out, it can quickly be inferred that the fish who reach the highest temperatures also achieve the longest swim times. With this, I'd like to adjust the research question to focus on the relationship between acclimation treatment and dropout temperature.*Which acclimation temperature yielded fish with the highest thermal tolerance?*
+This is the question I'm having the most trouble with, mainly because I'm dealing with three different variables, and one of them is of a different class (time instead of numerical). Especially in terms of summarizing the data in a way to help further my understanding of the question. Additionally, I think it would be better if I focused on dropout temperature instead of time. Due to the nature of the experiment, where temperature is increased over a fixed time interval until the last fish drops out, it can quickly be inferred that the fish who reach the highest temperatures also achieve the longest swim times. With this, I'd like to adjust the research question to focus on the relationship between acclimation treatment and dropout temperature.*Which acclimation temperature yielded fish with the highest thermal tolerance?*
 
 
 ### Question 4: Is there a relationship between body mass and dropout temperature?
@@ -219,12 +225,12 @@ Now, to tidy the data back up again, I'm going to pivot longer and create two co
 
 ## 2.3: Research questions to take into Milestone 3 
 
-I've decided to continue with  
-Is body mass influenced by acclimation temperature? 
+I've decided to continue with the questions *Is body mass influenced by acclimation temperature?*and *Which acclimation temperature yielded fish with the highest thermal tolerance?*
+
 ```{r}
 
 ```
-which acclimation temperature yielded fish with the highest thermal tolerance?
+
 ```{r}
 
 ```
