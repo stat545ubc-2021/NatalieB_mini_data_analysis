@@ -16,7 +16,7 @@ library(rlang)
 library(dplyr)
 
 library(readr)
-CTmax_swim_Fry <- read_csv("CTmax_swim_Fry.csv", 
+CTmax_swim_Fry <- read_csv("../CTmax_swim_Fry.csv", 
     col_types = cols(`Fish ID` = col_character(),
         `dropout time` = col_time(format = "%H:%M:%S"), 
         `Acclimation temp C` = col_character(), 
