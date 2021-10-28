@@ -33,8 +33,9 @@ In this (3rd) milestone, you'll be sharpening some of the results you obtained f
 Begin by loading your data and the tidyverse package below: 
 
 ```{r, message = FALSE}
-library(datateachr) # <- might contain the data you picked!
+library(datateachr) 
 library(tidyverse)
+library(broom)
 ```
 
 Load personal dataset
@@ -102,6 +103,11 @@ Now, choose two of the following tasks.
 
 ```{r warning=FALSE}
 
+ggplot(CTmax_swim_Fry, aes(`Acclimation temp C`, `Mass (g)`))+
+  geom_boxplot()+
+  geom_jitter(aes(),
+            size = 1.5,
+            alpha = 0.3)
 ```
 
 
@@ -160,8 +166,15 @@ Fit a model or run a hypothesis test that provides insight on this variable with
     - You could use `lm()` to test for significance of regression.
 
 <!-------------------------- Start your work below ---------------------------->
+I'd like to 
+```{r warning=FALSE}
+(CT_max_lm<- lm(`Mass (g)` ~ `Acclimation temp C`, CTmax_swim_Fry))
 
+```
+```{r warning=FALSE}
+(CT_max_anova <- aov(`Mass (g)` ~ `Acclimation temp C`, CTmax_swim_Fry))
 
+```
 <!----------------------------------------------------------------------------->
 
 ## 2.2 (5 points)
@@ -174,7 +187,10 @@ Produce something relevant from your fitted model: either predictions on Y, or a
   
 <!-------------------------- Start your work below ---------------------------->
 
+```{r warning=FALSE}
+tidy(CT_max_anova)
 
+```
 <!----------------------------------------------------------------------------->
 
 
