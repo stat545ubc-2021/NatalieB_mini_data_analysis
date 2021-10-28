@@ -55,7 +55,7 @@ View(CTmax_swim_Fry)
 From Milestone 2, you chose two research questions. What were they? Put them here.
 
 <!-------------------------- Start your work below ---------------------------->
-1. *Is body mass influenced by acclimation temperature?**
+1. *Is body mass influenced by acclimation temperature?*
 2. *Which acclimation temperature yielded fish with the highest thermal tolerance?*
 <!----------------------------------------------------------------------------->
 
@@ -69,10 +69,11 @@ But first, tasks 1 and 2 below ask you to modify a plot you made in a previous m
 <!-------------------------- Start your work below ---------------------------->
 ```{r warning=FALSE}
 ggplot(CTmax_swim_Fry, aes(`Acclimation temp C`, `Mass (g)`))+
-  geom_boxplot(aes(fill= `Acclimation temp C` ))+
+  geom_boxplot(aes(fill=`Acclimation temp C` ))+
   geom_jitter(aes(),
             size = 1.5,
-            alpha = 0.3)
+            alpha = 0.3)+
+  theme(legend.position = "none") 
 
 ```
 
@@ -96,18 +97,40 @@ Now, choose two of the following tasks.
 
 <!-------------------------- Start your work below ---------------------------->
 
-**Task Number**: FILL_THIS_IN
+**Task Number**: 1
 
+
+```{r warning=FALSE}
+
+```
 
 
 <!----------------------------------------------------------------------------->
 
 
 <!-------------------------- Start your work below ---------------------------->
+ 
+**Task Number**: 2
 
-**Task Number**: FILL_THIS_IN
+By condensing the two lowest temperature acclimations and the two highest temperature acclimations together into two separate categories labeled "cool" and "warm" I'm able to ascertain a bigger picture of the effects of temperature on mass. 15C and 18C are known in literature to be generally well-tolerated by Chinook salmon, while 20C and 24C have been noted as approaching near-lethal temperatures. 
 
+What we can infer with the wide array of mass measurements in the "warm" category is that acclimation temperature is acting as a chronic selective force; some fish were better able to recruit thermal coping strategies over time in the warm category, while others weren't. This variance in coping with the thermal stressor will influence their ability to compete for food. 
 
+This isn't seen in the "cool" temperature category is that these fish are not being selected for thermal coping strategies, as they are not under thermal stress. Because of this, all the fish are able to a similar degree use their energy for growth and maintenance.
+
+```{r warning=FALSE}
+Acclimation_condensed<- CTmax_swim_Fry %>% 
+    select(-`dropout time`,-`fork length (mm)`,-`Dropout temp`)%>%
+    mutate(`Acclimation temp C` = fct_collapse(`Acclimation temp C`, Cool= c("15", "18") , Warm= c("20", "24")))
+
+ ggplot(Acclimation_condensed, aes(`Acclimation temp C`, `Mass (g)`))+
+  geom_boxplot(aes(fill=`Acclimation temp C` ))+
+  geom_jitter(aes(),
+            size = 1.5,
+            alpha = 0.3)+
+  theme(legend.position = "none") 
+
+```
 
 <!----------------------------------------------------------------------------->
 
@@ -121,9 +144,9 @@ Pick a research question, and pick a variable of interest (we'll call it "Y") th
 
 <!-------------------------- Start your work below ---------------------------->
 
-**Research Question**: FILL_THIS_IN
+**Research Question**: Is body mass influenced by acclimation temperature?
 
-**Variable of interest**: FILL_THIS_IN
+**Variable of interest**: Mass (g)
 
 <!----------------------------------------------------------------------------->
 
