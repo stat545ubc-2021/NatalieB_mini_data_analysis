@@ -40,7 +40,7 @@ The file rendered from knitting "mini data analysis deliverable 1.Rmd".
 
 This file contains the .png renderings of the graphs made in part 2. 
 
-## Deliverable 2 🐠
+## Deliverable 2, file Milestone.2 🐠
 
 ### *mini data analysis deliverable 2.Rmd:*
 
@@ -54,4 +54,6 @@ The file rendered from knitting "mini data analysis deliverable 2.Rmd".
 ### *mini-data-analysis-deliverable-2_files:*
 
 This file contains the .png renderings of the graphs made for question 1.2.
+
+## Deliverable 3, file Milestone.3 🦈
 
