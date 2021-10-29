@@ -7,7 +7,7 @@ This Mini Data Analysis project is part of the UBC STAT545A course. In three ins
 
 ### *README.md:*
 
-This file! contains descriptions of the content found in this repository.
+This file! Contains descriptions of the content found in this repository.
 
 
 ### *.gitignore:*
@@ -23,10 +23,18 @@ contains the project options and can be used as a shortcut for opening the proje
 
 A comma-separated file format containing the dataset used for the analysis project.
 
-## Deliverable 1, file Milestone.1 :fish:
+## Deliverable 1, folder Milestone.1 :fish:
 
-## Deliverable 2, file Milestone.2 🐠
+This folder contains the materials for Milestone 1; within this folder is a task-specific README.md file with further details.
 
-## Deliverable 3, file Milestone.3 🦈
+## Deliverable 2, folder Milestone.2 🐠
+
+This folder contains the materials for Milestone 2; within this folder is a task-specific README.md file with further details.
+
+## Deliverable 3, folder Milestone.3 🦈
+
+This folder contains the materials for Milestone 3; within this folder is a task-specific README.md file with further details.
 
 ## File Output 🐡
+
+This folder contains materials from Milestone 3, task 3; within this folder is a task-specific README.md file with further details.
