@@ -221,7 +221,8 @@ Take a summary table that you made from Milestone 2 (Exercise 1.2), and write it
 (body_mass_median <- CTmax_swim_Fry %>%
   group_by( `Acclimation temp C`) %>%
   summarise(body_mass_median = median(`Mass (g)`, na.rm = TRUE)))
-
+```
+```{r warning=FALSE}
 (write_csv(body_mass_median, here::here("output", "body_mass_median.csv")))
 
 ```
@@ -236,10 +237,15 @@ Write your model object from Exercise 2 to an R binary file (an RDS), and load i
 
 <!-------------------------- Start your work below ---------------------------->
 ```{r warning=FALSE}
-
+saveRDS(CT_max_anova, here::here("Output", "CT_max_anova.rds"))
+```
+```{r warning=FALSE}
+CT_max_anova_printMe<- readRDS(here::here("Output", "CT_max_anova.rds"))
 
 ```
-
+```{r warning=FALSE}
+print(CT_max_anova_printMe)
+```
 <!----------------------------------------------------------------------------->
 
 # Tidy Repository
