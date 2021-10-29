@@ -36,9 +36,17 @@ Begin by loading your data and the tidyverse package below:
 library(datateachr) 
 library(tidyverse)
 library(broom)
+library(ggplot2)
+library(ggridges)
+library(scales)
+library(tsibble)
+library(tidyverse)
+library(rlang)
+library(dplyr)
+
 ```
 
-Load personal dataset
+Load personal dataset for project
 
 ```{r message=FALSE, warning=FALSE}
 library(readr)
@@ -67,6 +75,7 @@ For this exercise, you'll be choosing two of the three tasks below -- both tasks
 
 But first, tasks 1 and 2 below ask you to modify a plot you made in a previous milestone. The plot you choose should involve plotting across at least three groups (whether by facetting, or using an aesthetic like colour). Place this plot below (you're allowed to modify the plot if you'd like). If you don't have such a plot, you'll need to make one. Place the code for your plot below.
 
+**Initial plot**
 <!-------------------------- Start your work below ---------------------------->
 ```{r warning=FALSE}
 ggplot(CTmax_swim_Fry, aes(`Acclimation temp C`, `Mass (g)`))+
@@ -98,16 +107,20 @@ Now, choose two of the following tasks.
 
 <!-------------------------- Start your work below ---------------------------->
 
-**Task Number**: 1
+**Task Number: 1**
 
+I've decided to reorder the plots out of order of acclimation and place the 24C acclimation treatment to the front. This reordering will help with the comparison between the distribution of mass between the 15C and 24C acclimation temperatures. By using fct_relevel(), I can manually reorder my acclimation treatments so that 24C is in front.
 
+Here I can see better that the 24C acclimation treatment yields a much lower body mass than the 15C more clearly.
 ```{r warning=FALSE}
-
-ggplot(CTmax_swim_Fry, aes(`Acclimation temp C`, `Mass (g)`))+
-  geom_boxplot()+
+(ggplot(CTmax_swim_Fry, aes(fct_relevel(`Acclimation temp C`, "24"), `Mass (g)`))+
+  geom_boxplot(aes(fill=`Acclimation temp C` ))+
   geom_jitter(aes(),
             size = 1.5,
-            alpha = 0.3)
+            alpha = 0.3)+
+  theme(legend.position = "none")+
+  labs(x = "Acclimation temperature"))
+  
 ```
 
 
@@ -116,7 +129,7 @@ ggplot(CTmax_swim_Fry, aes(`Acclimation temp C`, `Mass (g)`))+
 
 <!-------------------------- Start your work below ---------------------------->
  
-**Task Number**: 2
+**Task Number: 2**
 
 By condensing the two lowest temperature acclimations and the two highest temperature acclimations together into two separate categories labeled "cool" and "warm" I'm able to ascertain a bigger picture of the effects of temperature on mass. 15C and 18C are known in literature to be generally well-tolerated by Chinook salmon, while 20C and 24C have been noted as approaching near-lethal temperatures. 
 
@@ -150,9 +163,9 @@ Pick a research question, and pick a variable of interest (we'll call it "Y") th
 
 <!-------------------------- Start your work below ---------------------------->
 
-**Research Question**: Is body mass influenced by acclimation temperature?
+**Research Question: Is body mass influenced by acclimation temperature?**
 
-**Variable of interest**: Mass (g)
+**Variable of interest: Mass (g)**
 
 <!----------------------------------------------------------------------------->
 
@@ -166,11 +179,7 @@ Fit a model or run a hypothesis test that provides insight on this variable with
     - You could use `lm()` to test for significance of regression.
 
 <!-------------------------- Start your work below ---------------------------->
-I'd like to 
-```{r warning=FALSE}
-(CT_max_lm<- lm(`Mass (g)` ~ `Acclimation temp C`, CTmax_swim_Fry))
-
-```
+I decided to do a one-way ANOVA to try and ascertain the level of significance between the means of mass for each acclimation treatment.
 ```{r warning=FALSE}
 (CT_max_anova <- aov(`Mass (g)` ~ `Acclimation temp C`, CTmax_swim_Fry))
 
@@ -186,7 +195,7 @@ Produce something relevant from your fitted model: either predictions on Y, or a
 - Obtain your results using the `broom` package if possible. If your model is not compatible with the broom function you're needing, then you can obtain your results by some other means, but first indicate which broom function is not compatible. 
   
 <!-------------------------- Start your work below ---------------------------->
-
+Here I decided to look at the p-value, which is found in column 6, row 1. This p-value is less than 0.05, showing that there is significance in the difference of some mean mass between acclimation temperature treatments.
 ```{r warning=FALSE}
 tidy(CT_max_anova)
 
@@ -207,7 +216,12 @@ Take a summary table that you made from Milestone 2 (Exercise 1.2), and write it
 - **Reproducibility criteria**: You should be able to delete the csv file, and remake it simply by knitting this Rmd file. 
   
 <!-------------------------- Start your work below ---------------------------->
+```{r warning=FALSE}
+CTmax_swim_Fry %>%
+  group_by( `Acclimation temp C`) %>%
+  summarise(body_mass_median = median(`Mass (g)`, na.rm = TRUE))
 
+```
 
 <!----------------------------------------------------------------------------->
 
@@ -218,7 +232,10 @@ Write your model object from Exercise 2 to an R binary file (an RDS), and load i
 - The same robustness and reproducibility criteria as in 3.1 apply here.
 
 <!-------------------------- Start your work below ---------------------------->
+```{r warning=FALSE}
 
+
+```
 
 <!----------------------------------------------------------------------------->
 
