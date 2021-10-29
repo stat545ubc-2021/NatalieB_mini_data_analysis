@@ -217,9 +217,12 @@ Take a summary table that you made from Milestone 2 (Exercise 1.2), and write it
   
 <!-------------------------- Start your work below ---------------------------->
 ```{r warning=FALSE}
-CTmax_swim_Fry %>%
+
+(body_mass_median <- CTmax_swim_Fry %>%
   group_by( `Acclimation temp C`) %>%
-  summarise(body_mass_median = median(`Mass (g)`, na.rm = TRUE))
+  summarise(body_mass_median = median(`Mass (g)`, na.rm = TRUE)))
+
+(write_csv(body_mass_median, here::here("output", "body_mass_median.csv")))
 
 ```
 
