@@ -57,4 +57,19 @@ This file contains the .png renderings of the graphs made for question 1.2.
 
 ## Deliverable 3, file Milestone.3 🦈
 
-## Output 🐡
+### *mini data analysis deliverable 3.Rmd:*
+
+### *mini-data-analysis-deliverable-3.md:*
+
+The file rendered from knitting "mini data analysis deliverable 3.Rmd".
+
+### *mini-data-analysis-deliverable-3_files:*
+
+This file contains the .png renderings of the graphs made for tasks 1 and 2.
+
+
+## File Output 🐡
+
+### body_mass_median.csv
+
+This file is a .csv file format of the tibble containing data from deliverable 2; this information is the median body mass per acclimation temperature.
